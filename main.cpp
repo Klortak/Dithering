@@ -9,18 +9,13 @@
 using namespace std;
 
 int main() {
-
 	// @FIXME Rn it doesn't allow for editing of alpha data
-	// BitMap bit = BitMap("Input/shaun.bmp");
 
     vector<uint8_t> palette = {0, 0, 0, 255, 0, 0};
-    BitMap b = BitMap("Input/shaun.bmp");
-    Image& bmp = b;
-    // bmp.edit(1, 1, 0);
-    // @TODO: Need to change the dither function to their own container, maybe an enum?
-    // @TODO: Also need to make the dither functions return a new image rather than modifying
-    // Dither::dither(bmp, &Dither::bayer, palette);
-    // bmp.quantize(8, &Dither::bayer);
+    BitMap bmp = BitMap("Input/shaun.bmp");
+    Image& img = bmp;
+    Dither::apply(img, palette);
+    // Dither::apply(img, bmp.quantize(4));
     bmp.save("Output/dithered.bmp");
     
     // BitMap test = BitMap(50, 50);
